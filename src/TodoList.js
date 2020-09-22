@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import TodoItem from './TodoItem'
 class TodoList_1 extends Component {
 	//Todolist的构造函数
 	constructor(props) {
@@ -15,13 +16,15 @@ class TodoList_1 extends Component {
 	render() {
 		return (
 			<Fragment>
+				{/* 什么 */}
 				{
 					// 要在JSX中使用JS脚本,需添加大括号
 				}
-
+				<label htmlFor="A">聚焦到输入框</label>
 				<input
 					// 将value值与状态当中数据进行绑定
 					value={this.state.InputValue}
+					id="A"
 					// 事件绑定,语法是将HTML中的事件语句变为大写.
 					// 如果没有事件绑定
 					// 同时应该改变类函数的this指向
@@ -39,18 +42,23 @@ class TodoList_1 extends Component {
 					{
 						this.state.list.map((item, index) => {
 							return (
-								<li
-									key={index}
-									// 通过bind想事件函数中传递数据
-									onClick={this.handleItemDelete.bind(this, index)}
-								>
-									{item}
-								</li>
+								<div>
+									<TodoItem content={item} keys={index} delete={this.handleItemDelete.bind(this)}/>
+									{
+										/*<li
+										key={index}
+										// 通过bind想事件函数中传递数据
+										onClick={this.handleItemDelete.bind(this, index)}
+										dangerouslySetInnerHTML={{__html:item}}
+									>
+									</li>*/
+									}
+								</div>
 							)
 						})
 					}
 				</ul>
-			</Fragment>
+			</Fragment >
 		)
 	}
 	handleInputChange(e) {
